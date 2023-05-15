@@ -10,6 +10,9 @@ import ST7735
 import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 
+from PIL import Image, ImageDraw, ImageFont
+from fonts.ttf import RobotoMedium as UserFont
+
 try:
     from smbus2 import SMBus
 except ImportError:
@@ -66,7 +69,7 @@ def display_data(values, disp):
     font = ImageFont.truetype(UserFont, font_size)
 
     text_colour = (255, 255, 255)
-    back_colour = (0, 170, 170) if check_wifi() else (85, 15, 15)
+    back_colour = (0, 170, 170)
     
     message = "Temp: {}°C\nhum: {}%\npress: {}hPa".format(
         values["temperature"], values["humidity"], values["pressure"]
